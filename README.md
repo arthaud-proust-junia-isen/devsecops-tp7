@@ -58,3 +58,7 @@ Le ServiceMonitor `fastapi-monitor` porte le label `release: prometheus`, sinon 
 ```promql
 http_requests_total{method="GET",path="/metrics",status="200"}
 ```
+
+## Dashboard Grafana
+
+`k8s/grafana-dashboard.yaml` est un ConfigMap avec le label `grafana_dashboard: "1"`. Le sidecar de Grafana le détecte et crée le dashboard « FastAPI » tout seul, sans passer par l'interface. Il affiche le nombre total de requêtes, les pods scrapés, le taux d'erreurs, les requêtes par seconde et la latence P95.
