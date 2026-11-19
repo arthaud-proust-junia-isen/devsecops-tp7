@@ -1,6 +1,6 @@
 # TP7 : Prometheus et Grafana sur Kubernetes avec Helm
 
-Cluster utilisé : kind (Kubernetes 1.37) qui tourne dans Podman sur macOS.
+Cluster utilisé : kind (Kubernetes 1.37) qui tourne dans Podman sur macOS. Le compte rendu, avec les captures et les réponses aux questions, est dans [RAPPORT.md](RAPPORT.md).
 
 ## Installer la stack
 
