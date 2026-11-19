@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: fastapi-monitor
+  namespace: monitoring
+  labels:
+    # sans ce label, le Prometheus installé par le chart ignore ce ServiceMonitor
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      # les consignes mettent app: fastapi, mais le Service est labellisé app: fastapi-app
+      app: fastapi-app
+  endpoints:
+    - port: web
+      path: /metrics

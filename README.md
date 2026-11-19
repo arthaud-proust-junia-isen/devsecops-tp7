@@ -52,3 +52,9 @@ Puis on applique les manifestes :
 ```bash
 kubectl apply -f k8s/
 ```
+
+Le ServiceMonitor `fastapi-monitor` porte le label `release: prometheus`, sinon l'opérateur ne le donne pas à Prometheus. Dans Status > Targets, les trois pods doivent être `UP`, et cette requête doit répondre :
+
+```promql
+http_requests_total{method="GET",path="/metrics",status="200"}
+```
