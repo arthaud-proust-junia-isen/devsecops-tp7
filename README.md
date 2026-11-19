@@ -36,3 +36,19 @@ kubectl get secret -n monitoring prometheus-grafana \
 ```
 
 Pour tester que les métriques du cluster remontent, la requête `kube_pod_container_status_running` doit renvoyer `1` pour chaque conteneur.
+
+## Déployer l'API FastAPI du TP6
+
+L'image vient du [TP6](https://github.com/arthaud-proust-junia-isen/tp6-monitoring-fastapi). Elle n'est publiée sur aucun registre, donc on la construit avec Podman et on la charge directement dans le nœud kind :
+
+```bash
+podman build -t localhost/fastapi-app:tp6 ../tp6
+podman save localhost/fastapi-app:tp6 -o fastapi.tar
+KIND_EXPERIMENTAL_PROVIDER=podman kind load image-archive fastapi.tar --name tp
+```
+
+Puis on applique les manifestes :
+
+```bash
+kubectl apply -f k8s/
+```

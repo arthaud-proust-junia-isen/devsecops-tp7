@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi-app
+  namespace: monitoring
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fastapi-app
+  template:
+    metadata:
+      labels:
+        app: fastapi-app
+    spec:
+      containers:
+        - name: fastapi-app
+          # image du TP6, construite avec podman puis chargée dans kind (voir README)
+          image: localhost/fastapi-app:tp6
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              name: web
